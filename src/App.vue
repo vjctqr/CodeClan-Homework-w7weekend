@@ -3,7 +3,7 @@
     <h1>Covid-19 Report</h1>
     <div class="main-container">
       <item-list :allreports='allreports'></item-list>
-      <item-detail :item='selectedItem'></item-detail>
+      <item-detail :report='selectedReport'></item-detail>
     </div>  
   </div>
 </template>
@@ -14,13 +14,14 @@
 <script>
   import {eventBus} from './main.js';
   import ReportsComponent from './components/ReportsComponent.vue';
-  import ItemListComponent from './components/ItemListComponent';
+  import ItemDetailComponent from './components/ItemDetailComponent';
 
   export default {
     name: 'app',
       data(){
         return {
         allreports: [],
+        selectedReport: null
         };
       },
     mounted(){
@@ -28,12 +29,12 @@
       .then(res => res.json())
       .then(allreports => this.allreports = allreports)
 
-      eventBus.$on('item-selected', (item) => {
-        this.selectedItem = item
+      eventBus.$on('report-selected', (report) => {
+        this.selectedReport = report
       })
     },
     components: {
-      "item-list": ItemListComponent,
+      "reports-component": ReportsComponent,
       "item-detail": ItemDetailComponent
     }
   }

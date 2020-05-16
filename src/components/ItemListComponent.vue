@@ -1,19 +1,19 @@
 <template lang="html">
-  <li v-on:click="handleClick">{{item.cases}}</li>
+  <div v-if='report'>
+    <h3>{{report.name}}</h3>
+  </div> 
 </template>
 
 <script>
+import {eventBus} from '../main.js';
+
 export default {
-  name: 'item-list-components',
-  props: ['reports'],
-  methods: {
-    handleClick(){
-      eventBus.$emit('item-selected', this.item)
-    }
-  }
-  
+  name: 'item-list-component',
+  props: ['reports']
+
 }
 </script>
 
 <style>
+
 </style>

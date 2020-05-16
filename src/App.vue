@@ -2,7 +2,7 @@
   <div>
     <h1>Covid-19 Report</h1>
     <div class="main-container">
-      <item-list :reports='reports'></item-list>
+      <item-list :allreports='allreports'></item-list>
       <item-detail :item='selectedItem'></item-detail>
     </div>  
   </div>
@@ -13,29 +13,28 @@
 
 <script>
   import {eventBus} from './main.js';
-  import ItemListComponent from './components/ItemListComponent.vue';
-  import ItemDetailComponent from './components/ItemDetailComponent';
+  import ReportsComponent from './components/ReportsComponent.vue';
+  import ItemListComponent from './components/ItemListComponent';
 
   export default {
     name: 'app',
       data(){
         return {
-        reports: [],
-        selectedItem: null
+        allreports: [],
         };
       },
     mounted(){
       fetch('https://covid19api.io/api/v1/AllReports')
-      .then(res => rs.json())
-      .then(reports => this.reports = reports)
+      .then(res => res.json())
+      .then(allreports => this.allreports = allreports)
 
-      eventBus.$om('item-selected', (item) => {
+      eventBus.$on('item-selected', (item) => {
         this.selectedItem = item
       })
     },
     components: {
-      "item-list": ItemList,
-      "item-detail": ItemDetail
+      "item-list": ItemListComponent,
+      "item-detail": ItemDetailComponent
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div v-if='reports'>
+  <div v-if='allreports'>
       <h3>{{reports.cases}}</h3>
       <h3>{{reports.recovered}}</h3>
   </div>

@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang="html">
   <li v-on:click="handleClick">{{item.cases}}</li>
 </template>
 

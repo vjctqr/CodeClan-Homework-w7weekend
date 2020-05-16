@@ -1,15 +1,20 @@
 <template>
   <div>
     <h1>Covid-19 Report</h1>
+    <div class="main-container">
+      <item-list :reports='reports'></item-list>
+      <item-detail :item='selectedItem'></item-detail>
+    </div>  
   </div>
 </template>
 
 <template>
-
 </template>
 
 <script>
   import {eventBus} from './main.js';
+  import ItemListComponent from './components/ItemListComponent.vue';
+  import ItemDetailComponent from './components/ItemDetailComponent';
 
   export default {
     name: 'app',
@@ -30,7 +35,7 @@
     },
     components: {
       "item-list": ItemList,
-      "item-datail": ItemDetail
+      "item-detail": ItemDetail
     }
   }
 </script>

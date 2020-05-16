@@ -1,16 +1,19 @@
 <template lang="html">
-  <div v-if='allreports'>
-      <h3>{{reports.cases}}</h3>
-      <h3>{{reports.recovered}}</h3>
-  </div>
+  <li v-on:click="handleClick">{{report.name}}</li>
   
 </template>
 
 <script>
 import {eventBus} from '../main.js';
+
 export default {
-    name: 'item-detail',
-    props: ['item']
+    name: 'report-list-component',
+    props: ['report'],
+    methods: {
+      handleClick(){
+        eventBus.$emit('report-selected', this.report)
+      }
+    }
 }
 </script>
 

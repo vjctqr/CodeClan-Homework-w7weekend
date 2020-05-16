@@ -1,10 +1,9 @@
 <template>
   <div>
     <h1>Covid-19 Report</h1>
-    <div class="main-container">
-      <item-list :allreports='allreports'></item-list>
-      <item-detail :report='selectedReport'></item-detail>
-    </div>  
+    <div class="main-wrapper">  
+    <report-list-component :reportlist='reportlist'></report-list-component>
+    <item-detail :item='selectedItem'></item-detail>
   </div>
 </template>
 
@@ -12,36 +11,36 @@
 </template>
 
 <script>
+  import ItemComponent from './components/ItemComponent.vue';
   import {eventBus} from './main.js';
-  import ReportsComponent from './components/ReportsComponent.vue';
-  import ItemDetailComponent from './components/ItemDetailComponent';
+  import ReportListComponent from './components/ReportListComponent.vue';
 
   export default {
     name: 'app',
       data(){
         return {
-        allreports: [],
-        selectedReport: null
-        };
+        reportlist: {},
+        selectedItem: null
+        }
       },
     mounted(){
-      fetch('https://covid19api.io/api/v1/AllReports')
-      .then(res => res.json())
-      .then(allreports => this.allreports = allreports)
-
-      eventBus.$on('report-selected', (report) => {
-        this.selectedReport = report
+        fetch('https://covid19api.io/api/v1/AllReports')
+        .then(res => res.json())
+        .then(reportlist => this.reportlist = reportlist)
+      
+        eventBus.$on("show-report", (reports) => {
+        this.selectedItem = item
       })
     },
     components: {
-      "reports-component": ReportsComponent,
-      "item-detail": ItemDetailComponent
+      "report-list-component": ReportListComponent,
+      "item-component": ItemComponent
     }
   }
 </script>
 
 <style>
-  .main-container {
+  .main-wrapper {
   display: flex;
   }
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <h1>Covid-19 Report</h1>
-    <div class="main-wrapper">  
-    <report-list-component :reportlist='reportlist'></report-list-component>
-    <item-detail :item='selectedItem'></item-detail>
-  </div>
-</template>
+  <!-- <div> -->
+    <h1>Report</h1>
 
-<template>
+    <!-- <div class="main-wrapper">  
+      <report-list-component :reportlist='reportlist'></report-list-component>
+      <item-detail :item='selectedItem'></item-detail>
+    </div> -->
+
+  <!-- </div> -->
 </template>
 
 <script>
@@ -19,7 +19,7 @@
     name: 'app',
       data(){
         return {
-        reportlist: {},
+        reportlist: [],
         selectedItem: null
         }
       },
@@ -28,7 +28,7 @@
         .then(res => res.json())
         .then(reportlist => this.reportlist = reportlist)
       
-        eventBus.$on("show-report", (reports) => {
+        eventBus.$on("item-selected", (item) => {
         this.selectedItem = item
       })
     },
@@ -40,7 +40,7 @@
 </script>
 
 <style>
-  .main-wrapper {
+  /* .main-wrapper {
   display: flex;
-  }
+  } */
 </style>

@@ -1,5 +1,6 @@
 <template lang="html">
-  <li v-on:click="handleClick">{{report.name}}</li>
+
+  <li v-on:click="handleClick">{{item.name}}</li>
   
 </template>
 
@@ -8,10 +9,10 @@ import {eventBus} from '../main.js';
 
 export default {
     name: 'report-list-component',
-    props: ['report'],
+    props: ['item'],
     methods: {
       handleClick(){
-        eventBus.$emit('report-selected', this.report)
+        eventBus.$emit('item-selected', this.item)
       }
     }
 }

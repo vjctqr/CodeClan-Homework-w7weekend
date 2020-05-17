@@ -1,6 +1,6 @@
 <template lang="html">
   <div v-if='item'>
-      <h3>{{item.cases}}</h3>
+      <h3>{{item.name}}</h3>
   </div>
   
 </template>

@@ -1,13 +1,13 @@
 <template>
-  <!-- <div> -->
-    <h1>Report</h1>
+  <div>
+    <h1>Covid-19 Report</h1>
 
-    <!-- <div class="main-wrapper">  
+    <div class="main-wrapper">  
       <report-list-component :reportlist='reportlist'></report-list-component>
-      <item-detail :item='selectedItem'></item-detail>
-    </div> -->
+      <item-component :item='selectedItem'></item-component>
+    </div>
 
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
@@ -19,11 +19,11 @@
     name: 'app',
       data(){
         return {
-        reportlist: [],
+        reportlist: {},
         selectedItem: null
         }
       },
-    mounted(){
+      mounted(){
         fetch('https://covid19api.io/api/v1/AllReports')
         .then(res => res.json())
         .then(reportlist => this.reportlist = reportlist)
@@ -32,15 +32,15 @@
         this.selectedItem = item
       })
     },
-    components: {
-      "report-list-component": ReportListComponent,
+      components: {
+      "report-list-components": ReportListComponent,
       "item-component": ItemComponent
     }
   }
 </script>
 
 <style>
-  /* .main-wrapper {
+  .main-wrapper {
   display: flex;
-  } */
+  }
 </style>
